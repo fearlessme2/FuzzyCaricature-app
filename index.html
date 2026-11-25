@@ -8,7 +8,6 @@
     * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { margin: 0; background: #f2f3f5; color: #222; }
 
-    /* Top White Header Banner */
     header {
       background: #ffffff;
       text-align: center;
@@ -19,7 +18,6 @@
     header h1 { margin: 0 0 8px; font-size: 2rem; font-weight: 800; color: #1f2328; }
     header p { margin: 0; font-size: 1rem; color: #57606a; }
 
-    /* Two-Column Main Grid */
     .container {
       max-width: 1040px;
       margin: 0 auto 40px;
@@ -43,7 +41,6 @@
     .sub-note { font-size: 0.85rem; font-style: italic; color: #666; margin: 0 0 18px; line-height: 1.4; }
     .field-label { display: block; font-weight: 600; font-size: 0.92rem; margin: 16px 0 8px; color: #222; }
 
-    /* Upload / Camera Buttons */
     .btn-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .gray-btn {
       background: #e9ecef;
@@ -58,7 +55,6 @@
     }
     .gray-btn:hover { background: #dde1e5; }
 
-    /* Square Photo Preview */
     .preview-box {
       margin: 18px auto 8px;
       width: 150px;
@@ -87,7 +83,6 @@
       cursor: pointer;
     }
 
-    /* Segmented Exaggeration Toggle */
     .toggle-group {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -111,7 +106,6 @@
       font-weight: 600;
     }
 
-    /* Text Input */
     input[type="text"] {
       width: 100%;
       padding: 11px 12px;
@@ -123,7 +117,6 @@
     }
     input[type="text"]::placeholder { color: #777; }
 
-    /* Generations Counter & Primary Red CTA */
     .gen-counter {
       text-align: center;
       font-weight: 700;
@@ -146,7 +139,6 @@
     .primary-red-btn:disabled { background: #9ca3af; cursor: not-allowed; }
     #status { text-align: center; font-size: 0.88rem; margin-top: 10px; color: #d92626; font-weight: 600; }
 
-    /* Right Panel: Output Placeholder + Paint Canvas */
     .output-frame {
       width: 100%;
       min-height: 410px;
@@ -174,7 +166,6 @@
       touch-action: none;
     }
 
-    /* Paint & Comment Toolbar (Appears below canvas) */
     .studio-tools { margin-top: 16px; border-top: 1px solid #e9ecef; padding-top: 14px; }
     .tool-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
     .mini-btn {
@@ -215,7 +206,6 @@
   </header>
 
   <main class="container">
-    <!-- LEFT COLUMN: CONTROLS -->
     <section class="panel">
       <h2>Upload your photo and get Fuzzytooned!</h2>
       <p class="sub-note">Photos are processed securely in real time and are not permanently stored.</p>
@@ -249,7 +239,6 @@
       <div id="status"></div>
     </section>
 
-    <!-- RIGHT COLUMN: OUTPUT + PAINT + RANDOM COMMENT -->
     <section class="panel">
       <div class="output-frame" id="output-frame">
         <span id="placeholder-text">Your generated caricature will appear here.</span>
@@ -290,3 +279,13 @@
     const previewBox = document.getElementById("preview-box");
     const video = document.getElementById("video");
     const photoPreview = document.getElementById("photo-preview");
+    const generateBtn = document.getElementById("generate-btn");
+    const statusEl = document.getElementById("status");
+    const genLeftEl = document.getElementById("gen-left");
+    const placeholderText = document.getElementById("placeholder-text");
+    const outputFrame = document.getElementById("output-frame");
+    const canvas = document.getElementById("paint-canvas");
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+
+    let capturedBase64 = null;
+    let stream = null;
