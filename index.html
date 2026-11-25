@@ -139,7 +139,7 @@
     let currentTool = "brush";
     let currentColor = "#ff6b6b";
     let isDrawing = false;
-    let undoStack = [];
+    let undoStack = new Array();
 
     document.querySelectorAll(".toggle-btn").forEach(function(btn) {
       btn.addEventListener("click", function() {
@@ -160,4 +160,3 @@
         previewBox.style.display = "block";
         photoPreview.style.display = "block";
         video.style.display = "none";
-        snapBtn.style.display = "none";
