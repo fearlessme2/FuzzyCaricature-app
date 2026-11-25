@@ -7,40 +7,40 @@
   <style>
     * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { margin: 0; background: #f2f3f5; color: #222; }
-    header { background: #fff; text-align: center; padding: 28px 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); margin-bottom: 24px; }
-    header h1 { margin: 0 0 8px; font-size: 2rem; font-weight: 800; color: #1f2328; }
+    header { background: #fff; text-align: center; padding: 26px 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); margin-bottom: 24px; }
+    header h1 { margin: 0 0 6px; font-size: 2rem; font-weight: 800; color: #1f2328; }
     header p { margin: 0; font-size: 1rem; color: #57606a; }
-    .container { max-width: 1040px; margin: 0 auto 40px; padding: 0 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    .container { max-width: 1020px; margin: 0 auto 40px; padding: 0 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     @media (max-width: 820px) { .container { grid-template-columns: 1fr; } }
-    .panel { background: #fff; border-radius: 6px; padding: 28px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-    .panel h2 { margin: 0 0 10px; font-size: 1.45rem; font-weight: 700; color: #1f2328; }
-    .sub-note { font-size: 0.85rem; font-style: italic; color: #666; margin: 0 0 18px; line-height: 1.4; }
-    .field-label { display: block; font-weight: 600; font-size: 0.92rem; margin: 16px 0 8px; color: #222; }
-    .btn-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .gray-btn { background: #e9ecef; border: 1px solid #ced4da; color: #222; padding: 11px 12px; font-size: 0.95rem; font-weight: 500; border-radius: 3px; cursor: pointer; text-align: center; }
-    .gray-btn:hover { background: #dde1e5; }
-    .preview-box { margin: 18px auto 8px; width: 160px; height: 160px; background: #e9ecef; border: 1px solid #ced4da; display: none; overflow: hidden; }
-    .preview-box img, .preview-box video { width: 100%; height: 100%; object-fit: cover; display: block; }
-    #snap-btn { display: none; margin: 8px auto 0; background: #d92626; color: #fff; border: none; padding: 8px 16px; border-radius: 3px; font-weight: 600; cursor: pointer; }
-    .toggle-group { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid #ced4da; border-radius: 4px; overflow: hidden; }
-    .toggle-btn { padding: 11px; border: none; font-size: 0.95rem; font-weight: 500; cursor: pointer; background: #e9ecef; color: #333; }
-    .toggle-btn.active { background: #d92626; color: #fff; font-weight: 600; }
-    input[type="text"] { width: 100%; padding: 11px 12px; background: #e9ecef; border: 1px solid #ced4da; border-radius: 3px; font-size: 0.95rem; color: #222; }
-    .gen-counter { text-align: center; font-weight: 700; font-size: 1rem; margin: 22px 0 12px; }
-    .gen-counter span { color: #198754; }
-    .primary-red-btn { width: 100%; background: #d92626; color: #fff; border: none; padding: 13px; font-size: 1rem; font-weight: 700; border-radius: 4px; cursor: pointer; }
-    .primary-red-btn:hover { background: #b81d1d; }
-    .primary-red-btn:disabled { background: #9ca3af; cursor: not-allowed; }
-    #status { text-align: center; font-size: 0.9rem; margin-top: 10px; color: #d92626; font-weight: 600; min-height: 20px; }
-    .output-frame { width: 100%; min-height: 410px; background: #e2e4e7; border: 2px dashed #aeb4bc; border-radius: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-    #placeholder-text { color: #6c757d; font-size: 1rem; padding: 20px; text-align: center; }
-    canvas#paint-canvas { display: none; max-width: 100%; height: auto; background: #fff; cursor: crosshair; touch-action: none; }
-    .studio-tools { margin-top: 16px; border-top: 1px solid #e9ecef; padding-top: 14px; }
-    .tool-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
-    .mini-btn { background: #e9ecef; border: 1px solid #ced4da; padding: 6px 10px; border-radius: 3px; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
-    .mini-btn.active { background: #d92626; color: #fff; border-color: #d92626; }
-    .swatch { width: 24px; height: 24px; border-radius: 50%; border: 1px solid #999; cursor: pointer; padding: 0; }
-    .comment-bar { background: #f8f9fa; border-left: 4px solid #d92626; padding: 10px 12px; font-size: 0.9rem; font-style: italic; color: #333; margin-top: 8px; border-radius: 2px; }
+    .panel { background: #fff; border-radius: 6px; padding: 26px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .panel h2 { margin: 0 0 8px; font-size: 1.4rem; color: #1f2328; }
+    .sub-note { font-size: 0.85rem; font-style: italic; color: #666; margin: 0 0 16px; }
+    .label { display: block; font-weight: 600; font-size: 0.92rem; margin: 14px 0 8px; }
+    .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .btn-gray { background: #e9ecef; border: 1px solid #ced4da; color: #222; padding: 11px; font-size: 0.95rem; font-weight: 600; border-radius: 4px; cursor: pointer; text-align: center; }
+    .btn-gray:hover { background: #dde1e5; }
+    .media-box { margin: 14px auto; width: 220px; height: 220px; background: #111; border-radius: 6px; overflow: hidden; display: none; }
+    .media-box video, .media-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .btn-snap { display: none; margin: 8px auto 0; background: #d92626; color: #fff; border: none; padding: 9px 18px; border-radius: 4px; font-weight: 700; cursor: pointer; }
+    .toggle-row { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid #ced4da; border-radius: 4px; overflow: hidden; }
+    .toggle-btn { padding: 11px; border: none; background: #e9ecef; color: #333; font-size: 0.95rem; font-weight: 600; cursor: pointer; }
+    .toggle-btn.active { background: #d92626; color: #fff; }
+    input[type="text"] { width: 100%; padding: 11px; background: #e9ecef; border: 1px solid #ced4da; border-radius: 4px; font-size: 0.95rem; }
+    .counter { text-align: center; font-weight: 700; margin: 20px 0 12px; }
+    .counter span { color: #198754; }
+    .btn-red { width: 100%; background: #d92626; color: #fff; border: none; padding: 14px; font-size: 1rem; font-weight: 700; border-radius: 4px; cursor: pointer; }
+    .btn-red:hover { background: #b81d1d; }
+    .btn-red:disabled { background: #9ca3af; cursor: not-allowed; }
+    #status { text-align: center; font-size: 0.9rem; font-weight: 600; color: #d92626; margin-top: 10px; min-height: 22px; }
+    .art-frame { width: 100%; min-height: 400px; background: #e2e4e7; border: 2px dashed #aeb4bc; border-radius: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    #art-placeholder { color: #6c757d; padding: 20px; text-align: center; }
+    canvas#art-canvas { display: none; max-width: 100%; height: auto; background: #fff; cursor: crosshair; touch-action: none; }
+    .tools { margin-top: 14px; border-top: 1px solid #e9ecef; padding-top: 12px; }
+    .tool-line { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+    .btn-tool { background: #e9ecef; border: 1px solid #ced4da; padding: 6px 10px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
+    .btn-tool.active { background: #d92626; color: #fff; border-color: #d92626; }
+    .dot { width: 24px; height: 24px; border-radius: 50%; border: 1px solid #888; cursor: pointer; padding: 0; }
+    .quote-box { background: #f8f9fa; border-left: 4px solid #d92626; padding: 10px 12px; font-size: 0.92rem; font-style: italic; color: #333; }
   </style>
 </head>
 <body>
@@ -55,109 +55,126 @@
       <h2>Upload your photo and get Fuzzytooned!</h2>
       <p class="sub-note">Photos are processed securely in real time and are not permanently stored.</p>
 
-      <span class="field-label">Choose a Portrait:</span>
-      <div class="btn-pair">
-        <label class="gray-btn">
-          Upload File
-          <input type="file" id="file-input" accept="image/*" hidden />
-        </label>
-        <button type="button" id="start-cam" class="gray-btn">Use Camera</button>
+      <span class="label">Choose a Portrait:</span>
+      <div class="btn-row">
+        <button type="button" id="btn-upload" class="btn-gray">Upload File</button>
+        <button type="button" id="btn-camera" class="btn-gray">Use Camera</button>
+      </div>
+      <input type="file" id="file-picker" accept="image/*" style="display:none;" />
+
+      <div class="media-box" id="media-box">
+        <video id="cam-video" autoplay playsinline muted></video>
+        <img id="cam-photo" alt="Your portrait" />
+      </div>
+      <button type="button" id="btn-snap" class="btn-snap">Snap Photo</button>
+
+      <span class="label">Exaggeration Intensity:</span>
+      <div class="toggle-row">
+        <button type="button" id="mode-caricature" class="toggle-btn active">Caricature</button>
+        <button type="button" id="mode-fuzzy" class="toggle-btn">Get Fuzzy</button>
       </div>
 
-      <div class="preview-box" id="preview-box">
-        <video id="video" autoplay playsinline muted></video>
-        <img id="photo-preview" alt="Portrait preview" />
-      </div>
-      <button type="button" id="snap-btn">Snap Portrait</button>
+      <label class="label" for="clothing">Clothing description (e.g., "a stylish business suit"):</label>
+      <input type="text" id="clothing" placeholder="e.g., 'a casual t-shirt'" />
 
-      <span class="field-label">Exaggeration Intensity:</span>
-      <div class="toggle-group">
-        <button type="button" class="toggle-btn active" data-mode="caricature">Caricature</button>
-        <button type="button" class="toggle-btn" data-mode="fuzzy">Get Fuzzy</button>
-      </div>
-
-      <label class="field-label" for="clothing-input">Clothing description (e.g., "a stylish business suit"):</label>
-      <input type="text" id="clothing-input" placeholder="e.g., 'a casual t-shirt'" />
-
-      <div class="gen-counter">Generations Left: <span id="gen-left">5</span></div>
-      <button type="button" id="generate-btn" class="primary-red-btn">Generate Caricature</button>
+      <div class="counter">Generations Left: <span id="gen-count">5</span></div>
+      <button type="button" id="btn-generate" class="btn-red">Generate Caricature</button>
       <div id="status"></div>
     </section>
 
     <section class="panel">
-      <div class="output-frame" id="output-frame">
-        <span id="placeholder-text">Your generated caricature will appear here.</span>
-        <canvas id="paint-canvas" width="512" height="512"></canvas>
+      <div class="art-frame" id="art-frame">
+        <span id="art-placeholder">Your generated caricature will appear here.</span>
+        <canvas id="art-canvas" width="512" height="512"></canvas>
       </div>
 
-      <div class="studio-tools">
-        <div class="tool-row">
-          <button type="button" id="tool-brush" class="mini-btn active">Brush</button>
-          <button type="button" id="tool-fill" class="mini-btn">Fill</button>
-          <input type="color" id="color-picker" value="#ff6b6b" title="Pick Color" style="width:30px; height:28px; border:none; background:none;" />
-          <button type="button" class="swatch" style="background:#ffadad;" data-color="#ffadad"></button>
-          <button type="button" class="swatch" style="background:#d4a373;" data-color="#d4a373"></button>
-          <button type="button" class="swatch" style="background:#8d5524;" data-color="#8d5524"></button>
-          <button type="button" class="swatch" style="background:#ffd166;" data-color="#ffd166"></button>
-          <button type="button" class="swatch" style="background:#06d6a0;" data-color="#06d6a0"></button>
-          <button type="button" class="swatch" style="background:#118ab2;" data-color="#118ab2"></button>
-          <button type="button" class="swatch" style="background:#ffffff;" data-color="#ffffff"></button>
+      <div class="tools">
+        <div class="tool-line">
+          <button type="button" id="tool-brush" class="btn-tool active">Brush</button>
+          <button type="button" id="tool-fill" class="btn-tool">Fill</button>
+          <input type="color" id="color-input" value="#ff6b6b" style="width:30px; height:28px; border:none; background:none;" />
+          <button type="button" class="dot" style="background:#ffadad;" data-hex="#ffadad"></button>
+          <button type="button" class="dot" style="background:#d4a373;" data-hex="#d4a373"></button>
+          <button type="button" class="dot" style="background:#8d5524;" data-hex="#8d5524"></button>
+          <button type="button" class="dot" style="background:#ffd166;" data-hex="#ffd166"></button>
+          <button type="button" class="dot" style="background:#06d6a0;" data-hex="#06d6a0"></button>
+          <button type="button" class="dot" style="background:#118ab2;" data-hex="#118ab2"></button>
+          <button type="button" class="dot" style="background:#ffffff;" data-hex="#ffffff"></button>
           <input type="range" id="brush-size" min="2" max="28" value="8" style="width:65px;" />
         </div>
 
-        <div class="tool-row">
-          <button type="button" id="undo-btn" class="mini-btn">Undo</button>
-          <button type="button" id="random-comment-btn" class="mini-btn">Random Comment</button>
-          <button type="button" id="stamp-comment-btn" class="mini-btn">Stamp on Art</button>
-          <button type="button" id="download-btn" class="mini-btn" style="margin-left:auto;">Save PNG</button>
+        <div class="tool-line">
+          <button type="button" id="btn-undo" class="btn-tool">Undo</button>
+          <button type="button" id="btn-comment" class="btn-tool">Random Comment</button>
+          <button type="button" id="btn-stamp" class="btn-tool">Stamp on Art</button>
+          <button type="button" id="btn-save" class="btn-tool" style="margin-left:auto;">Save PNG</button>
         </div>
 
-        <div id="comment-display" class="comment-bar">Click "Random Comment" for a witty caricature caption!</div>
+        <div id="quote-box" class="quote-box">Click "Random Comment" for a witty caricature caption!</div>
       </div>
     </section>
   </main>
 
   <script>
-    const fileInput = document.getElementById("file-input");
-    const startCamBtn = document.getElementById("start-cam");
-    const snapBtn = document.getElementById("snap-btn");
-    const previewBox = document.getElementById("preview-box");
-    const video = document.getElementById("video");
-    const photoPreview = document.getElementById("photo-preview");
-    const generateBtn = document.getElementById("generate-btn");
-    const statusEl = document.getElementById("status");
-    const genLeftEl = document.getElementById("gen-left");
-    const placeholderText = document.getElementById("placeholder-text");
-    const outputFrame = document.getElementById("output-frame");
-    const canvas = document.getElementById("paint-canvas");
-    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    var photoBase64 = "";
+    var activeStream = null;
+    var styleMode = "caricature";
+    var gensRemaining = 5;
+    var activeTool = "brush";
+    var activeColor = "#ff6b6b";
+    var painting = false;
+    var historyList = new Array();
 
-    let capturedBase64 = null;
-    let stream = null;
-    let intensityMode = "caricature";
-    let generationsLeft = 5;
-    let currentTool = "brush";
-    let currentColor = "#ff6b6b";
-    let isDrawing = false;
-    let undoStack = new Array();
+    var statusBox = document.getElementById("status");
+    var mediaBox = document.getElementById("media-box");
+    var camVideo = document.getElementById("cam-video");
+    var camPhoto = document.getElementById("cam-photo");
+    var btnSnap = document.getElementById("btn-snap");
+    var filePicker = document.getElementById("file-picker");
+    var artCanvas = document.getElementById("art-canvas");
+    var ctx = artCanvas.getContext("2d", { willReadFrequently: true });
 
-    document.querySelectorAll(".toggle-btn").forEach(function(btn) {
-      btn.addEventListener("click", function() {
-        document.querySelectorAll(".toggle-btn").forEach(function(b) { b.classList.remove("active"); });
-        btn.classList.add("active");
-        intensityMode = btn.dataset.mode;
-      });
-    });
+    document.getElementById("btn-upload").onclick = function() {
+      filePicker.click();
+    };
 
-    fileInput.addEventListener("change", function(e) {
-      const file = e.target.files.item(0);
+    filePicker.onchange = function(e) {
+      var file = e.target.files.item(0);
       if (!file) return;
-      if (stream) stream.getTracks().forEach(function(t) { t.stop(); });
-      const reader = new FileReader();
+      stopCamera();
+      var reader = new FileReader();
       reader.onload = function() {
-        capturedBase64 = reader.result.split(",").pop();
-        photoPreview.src = reader.result;
-        previewBox.style.display = "block";
-        photoPreview.style.display = "block";
-        video.style.display = "none";
-        snapBtn.style.display = "none";
+        var result = reader.result;
+        photoBase64 = result.slice(result.indexOf(",") + 1);
+        camPhoto.src = result;
+        mediaBox.style.display = "block";
+        camPhoto.style.display = "block";
+        camVideo.style.display = "none";
+        btnSnap.style.display = "none";
+        statusBox.textContent = "Photo ready! Click Generate Caricature.";
+      };
+      reader.readAsDataURL(file);
+    };
+
+    document.getElementById("btn-camera").onclick = function() {
+      statusBox.textContent = "Opening camera...";
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        statusBox.textContent = "Camera not supported here. Use Upload File.";
+        return;
+      }
+      navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        .then(function(stream) {
+          activeStream = stream;
+          camVideo.srcObject = stream;
+          camVideo.play();
+          mediaBox.style.display = "block";
+          camVideo.style.display = "block";
+          camPhoto.style.display = "none";
+          btnSnap.style.display = "block";
+          statusBox.textContent = "Camera active! Click Snap Photo.";
+        })
+        .catch(function(err) {
+          statusBox.textContent = "Camera blocked: " + err.message;
+        });
+    };
+
