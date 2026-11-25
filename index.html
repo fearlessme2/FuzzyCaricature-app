@@ -19,7 +19,7 @@
     .btn-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .gray-btn { background: #e9ecef; border: 1px solid #ced4da; color: #222; padding: 11px 12px; font-size: 0.95rem; font-weight: 500; border-radius: 3px; cursor: pointer; text-align: center; }
     .gray-btn:hover { background: #dde1e5; }
-    .preview-box { margin: 18px auto 8px; width: 150px; height: 150px; background: #e9ecef; border: 1px solid #ced4da; display: none; overflow: hidden; }
+    .preview-box { margin: 18px auto 8px; width: 160px; height: 160px; background: #e9ecef; border: 1px solid #ced4da; display: none; overflow: hidden; }
     .preview-box img, .preview-box video { width: 100%; height: 100%; object-fit: cover; display: block; }
     #snap-btn { display: none; margin: 8px auto 0; background: #d92626; color: #fff; border: none; padding: 8px 16px; border-radius: 3px; font-weight: 600; cursor: pointer; }
     .toggle-group { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid #ced4da; border-radius: 4px; overflow: hidden; }
@@ -31,7 +31,7 @@
     .primary-red-btn { width: 100%; background: #d92626; color: #fff; border: none; padding: 13px; font-size: 1rem; font-weight: 700; border-radius: 4px; cursor: pointer; }
     .primary-red-btn:hover { background: #b81d1d; }
     .primary-red-btn:disabled { background: #9ca3af; cursor: not-allowed; }
-    #status { text-align: center; font-size: 0.88rem; margin-top: 10px; color: #d92626; font-weight: 600; }
+    #status { text-align: center; font-size: 0.9rem; margin-top: 10px; color: #d92626; font-weight: 600; min-height: 20px; }
     .output-frame { width: 100%; min-height: 410px; background: #e2e4e7; border: 2px dashed #aeb4bc; border-radius: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
     #placeholder-text { color: #6c757d; font-size: 1rem; padding: 20px; text-align: center; }
     canvas#paint-canvas { display: none; max-width: 100%; height: auto; background: #fff; cursor: crosshair; touch-action: none; }
@@ -65,10 +65,10 @@
       </div>
 
       <div class="preview-box" id="preview-box">
-        <video id="video" autoplay playsinline></video>
+        <video id="video" autoplay playsinline muted></video>
         <img id="photo-preview" alt="Portrait preview" />
       </div>
-      <button type="button" id="snap-btn">📸 Snap Portrait</button>
+      <button type="button" id="snap-btn">Snap Portrait</button>
 
       <span class="field-label">Exaggeration Intensity:</span>
       <div class="toggle-group">
@@ -92,8 +92,8 @@
 
       <div class="studio-tools">
         <div class="tool-row">
-          <button type="button" id="tool-brush" class="mini-btn active">🖌️ Brush</button>
-          <button type="button" id="tool-fill" class="mini-btn">🪣 Fill</button>
+          <button type="button" id="tool-brush" class="mini-btn active">Brush</button>
+          <button type="button" id="tool-fill" class="mini-btn">Fill</button>
           <input type="color" id="color-picker" value="#ff6b6b" title="Pick Color" style="width:30px; height:28px; border:none; background:none;" />
           <button type="button" class="swatch" style="background:#ffadad;" data-color="#ffadad"></button>
           <button type="button" class="swatch" style="background:#d4a373;" data-color="#d4a373"></button>
@@ -106,10 +106,10 @@
         </div>
 
         <div class="tool-row">
-          <button type="button" id="undo-btn" class="mini-btn">↩️ Undo</button>
-          <button type="button" id="random-comment-btn" class="mini-btn">🎲 Random Comment</button>
-          <button type="button" id="stamp-comment-btn" class="mini-btn">💬 Stamp on Art</button>
-          <button type="button" id="download-btn" class="mini-btn" style="margin-left:auto;">⬇️ Save PNG</button>
+          <button type="button" id="undo-btn" class="mini-btn">Undo</button>
+          <button type="button" id="random-comment-btn" class="mini-btn">Random Comment</button>
+          <button type="button" id="stamp-comment-btn" class="mini-btn">Stamp on Art</button>
+          <button type="button" id="download-btn" class="mini-btn" style="margin-left:auto;">Save PNG</button>
         </div>
 
         <div id="comment-display" class="comment-bar">Click "Random Comment" for a witty caricature caption!</div>
@@ -141,25 +141,23 @@
     let isDrawing = false;
     let undoStack = [];
 
-    document.querySelectorAll(".toggle-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".toggle-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".toggle-btn").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        document.querySelectorAll(".toggle-btn").forEach(function(b) { b.classList.remove("active"); });
         btn.classList.add("active");
         intensityMode = btn.dataset.mode;
       });
     });
 
-    fileInput.addEventListener("change", (e) => {
+    fileInput.addEventListener("change", function(e) {
       const file = e.target.files.item(0);
       if (!file) return;
-      if (stream) stream.getTracks().forEach(t => t.stop());
+      if (stream) stream.getTracks().forEach(function(t) { t.stop(); });
       const reader = new FileReader();
-      reader.onload = () => {
+      reader.onload = function() {
         capturedBase64 = reader.result.split(",").pop();
         photoPreview.src = reader.result;
         previewBox.style.display = "block";
         photoPreview.style.display = "block";
         video.style.display = "none";
         snapBtn.style.display = "none";
-        statusEl.textContent = "Photo loaded! Click Generate Caricature.";
-      };
